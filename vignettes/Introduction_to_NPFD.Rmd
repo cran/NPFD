@@ -1,0 +1,79 @@
+---
+title: "Introduction to NPFD"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to NPFD}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 7,
+  fig.height = 5
+)
+```
+
+```{r library setup}
+library(NPFD)
+library(siggenes)
+library(KernSmooth)
+library(splines)
+library(stats)
+library(graphics)
+library(VGAM)
+```
+
+
+# Introduction
+
+The NPFD package provides tools for performing deconvolution using the NPFD (N-Power Fourier Deconvolution) method described in a submitted paper by the author. This package is designed to make it easy to apply the NPFD method in R for various data sets.
+
+NPFD is thoroughly documented in the paper, including detailed mathematical derivations, theoretical background, and several examples. We recommend referring to the paper for in-depth understanding and theoretical details.
+
+
+# Overview of Functions
+
+The main functions included in the NPFD package are:
+
+- deconvolve(): This is the primary function of the package, which performs deconvolution on the provided data.
+- densprf(): This function is used internally by deconvolve() for density estimation.
+- createSample(): This function creates a sample from a centered distribution when a replicate of the mixed data is provided.
+
+The and denspr() function is sourced from the 'siggenes' package, with densprf() being a tailored modification of the original denspr() function. Below, we provide a brief example of how to use the deconvolve() function.
+
+```{r example setup}
+set.seed(123)
+x <- rnorm(1000)
+y <- rgamma(1000, 10, 2)
+z <- x + y
+
+independent.x <- rnorm(100)
+
+fy.NPFD <- deconvolve(independent.x, z, calc.error = T, plot = T)
+fy <- denspr(y, addx = T)
+
+fy.NPFD$N
+fy.NPFD$error
+
+plot(NULL, xlim = range(y), ylim = c(0, max(fy$y, fy.NPFD$y)), xlab = "x", ylab = "density")
+lines(fy, col = "blue", lwd = 2)
+lines(fy.NPFD, col = "orange", lwd = 2)
+legend("topright", legend = c(expression(f[y]), expression(f[y]^{NPFD})), 
+       col = c("blue", "orange"), lwd = c(2, 2))
+```
+
+
+# References
+
+For more detailed information on the methods used in this package, please refer to the following publications:
+
+Anarat A., Krutmann, J., and Schwender, H. (2024). A nonparametric statistical method for deconvolving densities in the analysis of proteomic data. Submitted.
+
+Efron, B., and Tibshirani, R. (1996). Using specially designed exponential families for density estimation. Annals of Statistics, 24, 2431–2461.
+
+Wand, M.P. (1997). Data-based choice of histogram bin width. American Statistician, 51, 59–64.

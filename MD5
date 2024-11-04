@@ -1,0 +1,13 @@
+a1dad1ce153e677a5ec3fa068a65779d *DESCRIPTION
+440ed6ffd6ae0ccd4118556b55743849 *NAMESPACE
+ff44f17f772f10b174999f45775a6989 *R/createSample.R
+e5396d4b5dcdfcbd4b4489e2a5647c90 *R/deconvolve.R
+0dee1da371aeffa410f20c8de23f2bd4 *R/densprf.R
+7d79cac3812cff9a7ebdc7b1ef7f76b2 *build/vignette.rds
+840c9bf23b0384c64d452f1113140791 *inst/doc/Introduction_to_NPFD.R
+1757e338d98487a7937e35dc64d7aa78 *inst/doc/Introduction_to_NPFD.Rmd
+d5b22557009496347a276f36c582908c *inst/doc/Introduction_to_NPFD.html
+27f4e48b65de0d7314520b1418121b6a *man/createSample.Rd
+b279b70169ef98d5f63090da2778a523 *man/deconvolve.Rd
+3be5750f3c11c31413bb0dfc696fe6d8 *man/densprf.Rd
+1757e338d98487a7937e35dc64d7aa78 *vignettes/Introduction_to_NPFD.Rmd
